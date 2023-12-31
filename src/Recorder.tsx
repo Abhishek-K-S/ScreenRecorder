@@ -7,7 +7,7 @@ const Recorder = ({stream, signalStop}: {stream: MediaStream, signalStop: ()=>vo
     const [rtc, setRtc] = React.useState<null|RecordRTC>(null)
 
     React.useEffect(()=>{
-        const r = new RecordRTC(stream, {type: 'video'})
+        const r = new RecordRTC(stream, {type: 'video', mimeType: 'video/mp4'})
         r.startRecording()
         startRecording()
         setRtc(r)
@@ -52,15 +52,13 @@ const Recorder = ({stream, signalStop}: {stream: MediaStream, signalStop: ()=>vo
         setRtc(prev=>{
             if(prev){
                 prev.stopRecording(()=>{
-                    console.log('stopped recording')
                     let data = prev.getBlob()
                     let url = URL.createObjectURL(data)
                     let a = document.createElement('a')
                     a.href = url;
-                    a.download = url;
-                    a.name
+                    a.download = new Date().toLocaleString()
+                    
                     a.click()
-                    console.log('a clicked')
                 });
             }
             setTimeout(signalStop, 1000);
