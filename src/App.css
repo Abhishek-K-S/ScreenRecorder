@@ -1,0 +1,88 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.placeCenter{
+    display: flex;
+    place-content: center;
+    min-height: 560px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer{
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.fadeIn{
+    animation: fadeLoad 1 1.2s ease-out;
+}
+
+@keyframes fadeLoad {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.parent{
+    position: relative;
+}
+
+.parent::after {
+    position: absolute;
+    content: '';
+    height: 20rem;
+    width: 20rem;
+    border: 1px solid white;
+    border-radius: 4rem;
+    z-index: -2;
+    scale: 1.03;
+
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    background-color: rgb(243, 26, 26);
+    filter: blur(10px);
+
+    animation: glow infinite 10s ease;
+    animation-delay: .1s;
+    transform-origin: 0% 0%;
+    
+}
+
+.parent::before {
+    position: absolute;
+    content: '';
+    height: 20rem;
+    width: 20rem;
+    background-color: #242424;
+    border-radius: 4rem;
+
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    z-index: -1;
+
+    animation: glow infinite 10s ease;
+    transform-origin: 0% 0%;
+}
+
+@keyframes glow {
+    0% {
+        rotate: -90%;
+    }
+    50% {
+        rotate: 180deg;
+    }
+    100% {
+        rotate: -90%;
+    }
+}
