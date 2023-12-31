@@ -19,10 +19,8 @@ const Recorder = ({stream, signalStop}: {stream: MediaStream, signalStop: ()=>vo
             })
         
         if(scr) scr.onended = ()=>{
-            console.log('videostopped');
             stopRecording()
         }
-        console.log(scr)
 
         const beforeUnloadHandler = (event:any) =>{
             const message = "Record is in progess, are you sure want to leave without saving it?"
@@ -47,13 +45,11 @@ const Recorder = ({stream, signalStop}: {stream: MediaStream, signalStop: ()=>vo
     }
 
     const stopRecording = () =>{
-        // console.log('RTC', rtc?.getBlob(), rtc?.blob)
-        console.log(rtc)
         setRtc(prev=>{
             if(prev){
                 prev.stopRecording(()=>{
                     let data = prev.getBlob()
-                    alert(data.type);
+                    // alert(data.type);
                     let url = URL.createObjectURL(data)
                     let a = document.createElement('a')
                     a.href = url;
